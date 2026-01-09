@@ -1,0 +1,18 @@
+{{ define "personal" }}
+
+    <section class="personal" id="personal">
+        <h2>selamat datang</h2>
+        {{/* {{range .}} */}}
+        <h2>
+            {{ .Personal.Name }}
+        </h2>
+        <p>
+            {{ .Personal.Description }}
+        </p>
+        <p>
+            {{ .Personal.Age }}
+        </p>
+        {{/* {{end}} */}}
+    </section>
+
+{{ end }}

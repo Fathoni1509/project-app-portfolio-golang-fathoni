@@ -1,0 +1,13 @@
+{{ define "main_edit" }}
+    {{ template "base" . }}
+
+    <main class="main_edit" id="main_edit">
+        <h2>ini halaman edit</h2>
+        <p>section personal</p>
+        {{ template "personal_edit" . }}
+    </main>
+
+    {{ template "footer" . }}
+    {{ template "lastfooter" . }}
+
+{{ end }}

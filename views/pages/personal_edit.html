@@ -1,0 +1,25 @@
+{{ define "personal_edit" }}
+
+    <section class="personal_edit" id="personal_edit">
+        <h2>ini halaman edit data</h2>
+        
+
+        <form action="/edit/personal/update" method="POST">
+            <div>
+                <label for="name">Nama</label><br>
+                <input type="text" id="personal_name" name="personal_name" value="{{ .Personal.Name }}">
+            </div>
+             <div>
+                <label for="age">Age</label><br>
+                <input type="number" id="personal_age" name="personal_age" value="{{ .Personal.Age }}">
+            </div>
+             <div>
+                <label for="description">Description</label><br>
+                <textarea name="personal_description" id="personal_description">{{ .Personal.Description }}</textarea>
+            </div>
+            <br>
+            <button type="submit">Simpan</button>
+        </form>
+    </section>
+
+{{ end }}
