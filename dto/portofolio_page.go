@@ -4,4 +4,5 @@ type PortfolioPage struct {
 	Personal PersonalResponse
 	Activity []ActivityResponse
 	Work     []WorkResponse
+	Project  []ProjectResponse
 }

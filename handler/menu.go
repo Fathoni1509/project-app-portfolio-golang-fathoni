@@ -13,6 +13,7 @@ type MenuHandler struct {
 	PersonalService service.PersonalService
 	ActivityService service.ActivityService
 	WorkService service.WorkService
+	ProjectService service.ProjectService
 	Services *service.Service
 }
 
@@ -49,10 +50,16 @@ func (h *MenuHandler) PortfolioView(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error get data work:", err)
 	}
 
+	project, err := h.Services.ProjectService.GetDataProject()
+	if err != nil {
+		fmt.Println("error get data work:", err)
+	}
+
 	pageData := dto.PortfolioPage{
 		Personal: personal,
 		Activity: activity,
 		Work: work,
+		Project: project,
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -77,10 +84,16 @@ func (h *MenuHandler) EditView(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error get data work:", err)
 	}
 
+	project, err := h.Services.ProjectService.GetDataProject()
+	if err != nil {
+		fmt.Println("error get data work:", err)
+	}
+
 	existingData := dto.PortfolioPage{
 		Personal: personal,
 		Activity: activity,
 		Work: work,
+		Project: project,
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")

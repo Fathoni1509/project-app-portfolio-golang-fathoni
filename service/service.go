@@ -6,6 +6,7 @@ type Service struct {
 	PersonalService PersonalService
 	ActivityService ActivityService
 	WorkService     WorkService
+	ProjectService  ProjectService
 }
 
 func NewService(repo repository.Repository) Service {
@@ -13,5 +14,6 @@ func NewService(repo repository.Repository) Service {
 		PersonalService: NewPersonalService(repo),
 		ActivityService: NewActivityService(repo),
 		WorkService:     NewWorkService(repo),
+		ProjectService:  NewProjectService(repo),
 	}
 }

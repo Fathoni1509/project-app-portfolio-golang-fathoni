@@ -1,0 +1,25 @@
+{{ define "project" }}
+
+    <section class="project" id="project">
+        <h2>selamat datang project</h2>
+        {{range .Project}}
+        <p>
+             {{ .ProjectId }}
+        </p>
+        <h2>
+            {{ .Name }}
+        </h2>
+        <p>
+            {{ .Description }}
+        </p>
+        <p>
+            {{ .Year }}
+        </p>
+        <p>
+            {{ .Link }}
+        </p>
+        <img src="{{ .ImageData }}" alt="img-{{ .ImageData }}" width="200">
+        {{end}}
+    </section>
+
+{{ end }}

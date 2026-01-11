@@ -6,6 +6,6 @@ type Project struct {
 	Description string `json:"description"`
 	Year        int    `json:"year"`
 	Link        string `json:"link"`
-	ImageData   byte   `json:"image_data"`
+	ImageData   string `json:"image_data"`
 	Model
 }

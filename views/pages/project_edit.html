@@ -1,0 +1,63 @@
+{{ define "project_edit" }}
+
+    <section class="project_edit" id="project_edit">
+        <h2>ini halaman edit data project</h2>
+        
+        {{ range .Project }}
+        <form action="/edit/project/update" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="project_id" value="{{ .ProjectId }}">
+            <div>
+                <label for="project_name_{{ .ProjectId }}">Nama</label><br>
+                <input type="text" id="project_name_{{ .ProjectId }}" name="project_name" value="{{ .Name }}">
+            </div>
+            <div>
+                <label for="project_description_{{ .ProjectId }}">Description</label><br>
+                <textarea id="project_description_{{ .ProjectId }}" name="project_description">{{ .Description }}</textarea>
+            </div>
+            <div>
+                <label for="project_year_{{ .ProjectId }}">Year</label><br>
+                <input type="number" id="project_year_{{ .ProjectId }}" name="project_year" value="{{ .Year }}">
+            </div>
+            <div>
+                <label for="project_link_{{ .ProjectId }}">Link</label><br>
+                <input type="text" id="project_link_{{ .ProjectId }}" name="project_link" value="{{ .Link }}">
+            </div>
+            <div>
+                <label for="project_image_{{ .ProjectId }}">Image</label><br>
+                <img src="{{ .ImageData }}" alt="img-{{ .ImageData }}" width="100">
+                <input type="file" id="project_image_{{ .ProjectId }}" name="project_image_data">
+            </div>
+            <br>
+            <button type="submit">Simpan</button>
+            <button type="submit" formaction="/edit/project/delete">Hapus</button>
+        </form>
+        {{ end }}
+
+        <p>tambah project</p>
+        <form action="/edit/project/create" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="project_name">Nama</label><br>
+                <input type="text" id="project_name" name="project_name">
+            </div>
+            <div>
+                <label for="project_description">Description</label><br>
+                <textarea id="project_description" name="project_description"></textarea>
+            </div>
+            <div>
+                <label for="project_year">Year</label><br>
+                <input type="number" id="project_year" name="project_year">
+            </div>
+            <div>
+                <label for="project_link">Link</label><br>
+                <input type="text" id="project_link" name="project_link">
+            </div>
+            <div>
+                <label for="project_image">Image</label><br>
+                <input type="file" id="project_image" name="project_image_data">
+            </div>
+            <br>
+            <button type="submit">Tambah</button>
+        </form>
+    </section>
+
+{{ end }}

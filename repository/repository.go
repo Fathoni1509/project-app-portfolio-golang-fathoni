@@ -6,6 +6,7 @@ type Repository struct {
 	PersonalRepo PersonalRepository
 	ActivityRepo ActivityRepository
 	WorkRepo     WorkRepository
+	ProjectRepo  ProjectRepository
 }
 
 func NewRepository(db database.PgxIface) Repository {
@@ -13,5 +14,6 @@ func NewRepository(db database.PgxIface) Repository {
 		PersonalRepo: NewPersonalRepository(db),
 		ActivityRepo: NewActivityRepository(db),
 		WorkRepo:     NewWorkRepository(db),
+		ProjectRepo:  NewProjectRepository(db),
 	}
 }
