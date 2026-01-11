@@ -26,7 +26,7 @@ func main() {
 
 	repo := repository.NewRepository(db)
 	service := service.NewService(repo)
-	handler := handler.NewHandler(service, templates)
+	handler := handler.NewHandler(&service, templates)
 
 	r := router.NewRouter(handler)
 

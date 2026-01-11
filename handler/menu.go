@@ -12,30 +12,47 @@ type MenuHandler struct {
 	Templates *template.Template
 	PersonalService service.PersonalService
 	ActivityService service.ActivityService
+	WorkService service.WorkService
+	Services *service.Service
 }
 
-func NewMenuHandler(templates *template.Template, personalService service.PersonalService, activityService service.ActivityService) MenuHandler {
+// func NewMenuHandler(templates *template.Template, personalService service.PersonalService, activityService service.ActivityService, workService service.WorkService) MenuHandler {
+// 	return MenuHandler{
+// 		Templates: templates,
+// 		PersonalService: personalService,
+// 		ActivityService: activityService,
+// 		WorkService: workService,
+// 	}
+// }
+
+func NewMenuHandler(templates *template.Template, service *service.Service) MenuHandler {
 	return MenuHandler{
 		Templates: templates,
-		PersonalService: personalService,
-		ActivityService: activityService,
+		Services: service,
 	}
 }
 
 func (h *MenuHandler) PortfolioView(w http.ResponseWriter, r *http.Request) {
-	personal, err := h.PersonalService.GetDataPersonal()
+	personal, err := h.Services.PersonalService.GetDataPersonal()
 	if err != nil {
 		fmt.Println("error get data personal:", err)
 	}
 
-	activity, err := h.ActivityService.GetDataActivity()
+	// activity, err := h.ActivityService.GetDataActivity()
+	activity, err := h.Services.ActivityService.GetDataActivity()
 	if err != nil {
 		fmt.Println("error get data activity:", err)
+	}
+
+	work, err := h.Services.WorkService.GetDataWork()
+	if err != nil {
+		fmt.Println("error get data work:", err)
 	}
 
 	pageData := dto.PortfolioPage{
 		Personal: personal,
 		Activity: activity,
+		Work: work,
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -45,19 +62,25 @@ func (h *MenuHandler) PortfolioView(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *MenuHandler) EditView(w http.ResponseWriter, r *http.Request) {
-	personal, err := h.PersonalService.GetDataPersonal()
+	personal, err := h.Services.PersonalService.GetDataPersonal()
 	if err != nil {
 		fmt.Println("error get data personal:", err)
 	}
 
-	activity, err := h.ActivityService.GetDataActivity()
+	activity, err := h.Services.ActivityService.GetDataActivity()
 	if err != nil {
 		fmt.Println("error get data activity:", err)
+	}
+
+	work, err := h.Services.WorkService.GetDataWork()
+	if err != nil {
+		fmt.Println("error get data work:", err)
 	}
 
 	existingData := dto.PortfolioPage{
 		Personal: personal,
 		Activity: activity,
+		Work: work,
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -66,6 +89,7 @@ func (h *MenuHandler) EditView(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// ga guna
 func (h *MenuHandler) PersonalView(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	if err := h.Templates.ExecuteTemplate(w, "personal", nil); err != nil {

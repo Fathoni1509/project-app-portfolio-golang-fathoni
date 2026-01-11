@@ -1,0 +1,21 @@
+{{ define "work" }}
+
+    <section class="work" id="work">
+        <h2>selamat datang work</h2>
+        {{range .Work}}
+        <p>
+             {{ .WorkId }}
+        </p>
+        <h2>
+            {{ .Name }}
+        </h2>
+        <p>
+            {{ .Description }}
+        </p>
+        <p>
+            {{ .Year }}
+        </p>
+        {{end}}
+    </section>
+
+{{ end }}

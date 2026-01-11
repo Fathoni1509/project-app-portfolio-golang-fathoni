@@ -1,0 +1,46 @@
+{{ define "work_edit" }}
+
+    <section class="work_edit" id="work_edit">
+        <h2>ini halaman edit data work</h2>
+        
+        {{ range .Work }}
+        <form action="/edit/work/update" method="POST">
+            <input type="hidden" name="work_id" value="{{ .WorkId }}">
+            <div>
+                <label for="work_name_{{ .WorkId }}">Nama</label><br>
+                <input type="text" id="work_name_{{ .WorkId }}" name="work_name" value="{{ .Name }}">
+            </div>
+            <div>
+                <label for="work_description_{{ .WorkId }}">Description</label><br>
+                <textarea id="work_description_{{ .WorkId }}" name="work_description">{{ .Description }}</textarea>
+            </div>
+            <div>
+                <label for="work_year_{{ .WorkId }}">Year</label><br>
+                <input type="number" id="work_year_{{ .WorkId }}" name="work_year" value="{{ .Year }}">
+            </div>
+            <br>
+            <button type="submit">Simpan</button>
+            <button type="submit" formaction="/edit/work/delete">Hapus</button>
+        </form>
+        {{ end }}
+
+        <p>tambah work</p>
+        <form action="/edit/work/create" method="POST">
+            <div>
+                <label for="work_name">Nama</label><br>
+                <input type="text" id="work_name" name="work_name">
+            </div>
+            <div>
+                <label for="work_description">Description</label><br>
+                <textarea id="work_description" name="work_description"></textarea>
+            </div>
+            <div>
+                <label for="work_year">Year</label><br>
+                <input type="number" id="work_year" name="work_year">
+            </div>
+            <br>
+            <button type="submit">Tambah</button>
+        </form>
+    </section>
+
+{{ end }}
