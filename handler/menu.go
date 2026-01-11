@@ -9,12 +9,13 @@ import (
 )
 
 type MenuHandler struct {
-	Templates *template.Template
+	Templates       *template.Template
 	PersonalService service.PersonalService
 	ActivityService service.ActivityService
-	WorkService service.WorkService
-	ProjectService service.ProjectService
-	Services *service.Service
+	WorkService     service.WorkService
+	ProjectService  service.ProjectService
+	ContactService  service.ContactService
+	Services        *service.Service
 }
 
 // func NewMenuHandler(templates *template.Template, personalService service.PersonalService, activityService service.ActivityService, workService service.WorkService) MenuHandler {
@@ -29,7 +30,7 @@ type MenuHandler struct {
 func NewMenuHandler(templates *template.Template, service *service.Service) MenuHandler {
 	return MenuHandler{
 		Templates: templates,
-		Services: service,
+		Services:  service,
 	}
 }
 
@@ -55,11 +56,17 @@ func (h *MenuHandler) PortfolioView(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error get data work:", err)
 	}
 
+	contact, err := h.Services.ContactService.GetDataContact()
+	if err != nil {
+		fmt.Println("error get data contact:", err)
+	}
+
 	pageData := dto.PortfolioPage{
 		Personal: personal,
 		Activity: activity,
-		Work: work,
-		Project: project,
+		Work:     work,
+		Project:  project,
+		Contact:  contact,
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -89,11 +96,17 @@ func (h *MenuHandler) EditView(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error get data work:", err)
 	}
 
+	contact, err := h.Services.ContactService.GetDataContact()
+	if err != nil {
+		fmt.Println("error get data contact:", err)
+	}
+
 	existingData := dto.PortfolioPage{
 		Personal: personal,
 		Activity: activity,
-		Work: work,
-		Project: project,
+		Work:     work,
+		Project:  project,
+		Contact:  contact,
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")

@@ -1,0 +1,46 @@
+{{ define "contact_edit" }}
+
+    <section class="contact_edit" id="contact_edit">
+        <h2>ini halaman edit data contact</h2>
+        
+        {{ range .Contact }}
+        <form action="/edit/contact/update" method="POST">
+            <input type="hidden" name="contact_id" value="{{ .ContactId }}">
+            <div>
+                <label for="contact_name_{{ .ContactId }}">Nama</label><br>
+                <input type="text" id="contact_name_{{ .ContactId }}" name="contact_name" value="{{ .Name }}">
+            </div>
+            <div>
+                <label for="contact_type_{{ .ContactId }}">Type</label><br>
+                <input type="text" id="contact_type_{{ .ContactId }}" name="contact_type" value="{{ .Type }}">
+            </div>
+            <div>
+                <label for="contact_link_{{ .ContactId }}">Link</label><br>
+                <input type="text" id="contact_link_{{ .ContactId }}" name="contact_link" value="{{ .Link }}">
+            </div>
+            <br>
+            <button type="submit">Simpan</button>
+            <button type="submit" formaction="/edit/contact/delete">Hapus</button>
+        </form>
+        {{ end }}
+
+        <p>tambah contact</p>
+        <form action="/edit/contact/create" method="POST">
+            <div>
+                <label for="contact_name">Nama</label><br>
+                <input type="text" id="contact_name" name="contact_name">
+            </div>
+            <div>
+                <label for="contact_type">Type</label><br>
+                <input type="text" id="contact_type" name="contact_type">
+            </div>
+            <div>
+                <label for="contact_link">Link</label><br>
+                <input type="text" id="contact_link" name="contact_link">
+            </div>
+            <br>
+            <button type="submit">Tambah</button>
+        </form>
+    </section>
+
+{{ end }}

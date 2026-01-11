@@ -11,6 +11,7 @@ type Handler struct {
 	ActivityHandler ActivityHandler
 	WorkHandler     WorkHandler
 	ProjectHandler  ProjectHandler
+	ContactHandler  ContactHandler
 }
 
 func NewHandler(service *service.Service, templates *template.Template) Handler {
@@ -21,5 +22,6 @@ func NewHandler(service *service.Service, templates *template.Template) Handler 
 		ActivityHandler: NewActivityHandler(templates, service.ActivityService),
 		WorkHandler:     NewWorkHandler(templates, service.WorkService),
 		ProjectHandler:  NewProjectHandler(templates, service.ProjectService),
+		ContactHandler:  NewContactHandler(templates, service.ContactService),
 	}
 }

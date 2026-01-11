@@ -1,0 +1,21 @@
+{{ define "contact" }}
+
+    <section class="contact" id="contact">
+        <h2>selamat datang contact</h2>
+        {{range .Contact}}
+        <p>
+             {{ .ContactId }}
+        </p>
+        <h2>
+            {{ .Name }}
+        </h2>
+        <p>
+            {{ .Type }}
+        </p>
+        <p>
+            {{ .Link }}
+        </p>
+        {{end}}
+    </section>
+
+{{ end }}

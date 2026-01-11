@@ -37,6 +37,11 @@ func NewRouter(handler handler.Handler) *chi.Mux {
 		r.Post("/project/create", handler.ProjectHandler.CreateProject)
 		r.Post("/project/update", handler.ProjectHandler.UpdateProject)
 		r.Post("/project/delete", handler.ProjectHandler.DeleteProject)
+
+
+		r.Post("/contact/create", handler.ContactHandler.CreateContact)
+		r.Post("/contact/update", handler.ContactHandler.UpdateContact)
+		r.Post("/contact/delete", handler.ContactHandler.DeleteContact)
 	})
 
 	fs := http.FileServer(http.Dir("public"))
