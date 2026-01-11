@@ -24,24 +24,33 @@ func NewRouter(handler handler.Handler) *chi.Mux {
 	r.Route("/edit", func(r chi.Router) {
 		// r.Get("/", handler.HandlerMenu.PersonalView)
 		r.Get("/", handler.HandlerMenu.EditView)
+
 		r.Post("/personal/update", handler.PersonalHandler.UpdatePersonal)
+
+		r.Route("/activity", func(r chi.Router) {
+			r.Post("/create", handler.ActivityHandler.CreateActivity)
+			r.Post("/update", handler.ActivityHandler.UpdateActivity)
+			r.Post("/delete", handler.ActivityHandler.DeleteActivity)
+		})
 		
-		r.Post("/activity/create", handler.ActivityHandler.CreateActivity)
-		r.Post("/activity/update", handler.ActivityHandler.UpdateActivity)
-		r.Post("/activity/delete", handler.ActivityHandler.DeleteActivity)
+		r.Route("/work", func(r chi.Router) {
+			r.Post("/create", handler.WorkHandler.CreateWork)
+			r.Post("/update", handler.WorkHandler.UpdateWork)
+			r.Post("/delete", handler.WorkHandler.DeleteWork)
+		})
 
-		r.Post("/work/create", handler.WorkHandler.CreateWork)
-		r.Post("/work/update", handler.WorkHandler.UpdateWork)
-		r.Post("/work/delete", handler.WorkHandler.DeleteWork)
+		r.Route("/project", func(r chi.Router) {
+			r.Post("/create", handler.ProjectHandler.CreateProject)
+			r.Post("/update", handler.ProjectHandler.UpdateProject)
+			r.Post("/delete", handler.ProjectHandler.DeleteProject)
+		})
 
-		r.Post("/project/create", handler.ProjectHandler.CreateProject)
-		r.Post("/project/update", handler.ProjectHandler.UpdateProject)
-		r.Post("/project/delete", handler.ProjectHandler.DeleteProject)
+		r.Route("/contact", func(r chi.Router) {
+			r.Post("/create", handler.ContactHandler.CreateContact)
+			r.Post("/update", handler.ContactHandler.UpdateContact)
+			r.Post("/delete", handler.ContactHandler.DeleteContact)
+		})
 
-
-		r.Post("/contact/create", handler.ContactHandler.CreateContact)
-		r.Post("/contact/update", handler.ContactHandler.UpdateContact)
-		r.Post("/contact/delete", handler.ContactHandler.DeleteContact)
 	})
 
 	fs := http.FileServer(http.Dir("public"))
@@ -49,15 +58,3 @@ func NewRouter(handler handler.Handler) *chi.Mux {
 
 	return r
 }
-
-// func Apiv1(handler handler.Handler) *chi.Mux {
-// 	r := chi.NewRouter()
-// 	r.Use(middleware.Logger)
-// 	// read update personal
-// 	r.Route("/personal", func(r chi.Router) {
-// 		r.Get("/", handler.PersonalHandler.GetDataPersonal)
-// 		r.Put("/", handler.PersonalHandler.UpdatePersonal)
-// 	})
-
-// 	return r
-// }
