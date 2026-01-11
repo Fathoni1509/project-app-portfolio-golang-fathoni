@@ -1,0 +1,21 @@
+{{ define "activity" }}
+
+    <section class="activity" id="activity">
+        <h2>selamat datang activity</h2>
+        {{range .Activity}}
+        <p>
+             {{ .ActivityId }}
+        </p>
+        <h2>
+            {{ .Name }}
+        </h2>
+        <p>
+            {{ .Year }}
+        </p>
+        <p>
+            {{ .Category }}
+        </p>
+        {{end}}
+    </section>
+
+{{ end }}

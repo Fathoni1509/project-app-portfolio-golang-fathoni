@@ -17,4 +17,5 @@ type ActivityResponse struct {
 	Name       string `json:"name"`
 	Year       int    `json:"year"`
 	CategoryId int    `json:"category_id"`
+	Category   string `json:"category"`
 }

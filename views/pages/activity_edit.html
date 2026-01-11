@@ -1,0 +1,58 @@
+{{ define "activity_edit" }}
+
+    <section class="activity_edit" id="activity_edit">
+        <h2>ini halaman edit data activity</h2>
+        
+        {{ range .Activity }}
+        <form action="/edit/activity/update" method="POST">
+            <input type="hidden" name="activity_id" value="{{ .ActivityId }}">
+            <div>
+                <label for="activity_name">Nama</label><br>
+                <input type="text" id="activity_name" name="activity_name" value="{{ .Name }}">
+            </div>
+            <div>
+                <label for="activity_year">Year</label><br>
+                <input type="number" id="activity_year" name="activity_year" value="{{ .Year }}">
+            </div>
+            <div>
+                <p>Category</p>
+                <label for="category_education_{{ .ActivityId }}">Education</label><br>
+                <input type="radio" id="category_education_{{ .ActivityId }}" name="activity_category_id" value="1"
+                {{ if eq .CategoryId 1 }} checked {{ end }}>
+
+                <label for="category_organization_{{ .ActivityId }}">Organization</label><br>
+                <input type="radio" id="category_organization_{{ .ActivityId }}" name="activity_category_id" value="2"
+                {{ if eq .CategoryId 2 }} checked {{ end }}>
+
+            </div>
+            <br>
+            <button type="submit">Simpan</button>
+            <button type="submit" formaction="/edit/activity/delete">Hapus</button>
+        </form>
+        {{ end }}
+
+        <p>tambah activity</p>
+        <form action="/edit/activity/create" method="POST">
+            <div>
+                <label for="activity_name">Nama</label><br>
+                <input type="text" id="activity_name" name="activity_name">
+            </div>
+            <div>
+                <label for="activity_year">Year</label><br>
+                <input type="number" id="activity_year" name="activity_year">
+            </div>
+            <div>
+                <p>Category</p>
+                <label for="category_education">Education</label><br>
+                <input type="radio" id="category_education" name="activity_category_id" value="1">
+
+                <label for="category_organization">Organization</label><br>
+                <input type="radio" id="category_organization" name="activity_category_id" value="2">
+
+            </div>
+            <br>
+            <button type="submit">Tambah</button>
+        </form>
+    </section>
+
+{{ end }}

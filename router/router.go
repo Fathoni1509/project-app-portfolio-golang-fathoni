@@ -25,6 +25,9 @@ func NewRouter(handler handler.Handler) *chi.Mux {
 		// r.Get("/", handler.HandlerMenu.PersonalView)
 		r.Get("/", handler.HandlerMenu.EditView)
 		r.Post("/personal/update", handler.PersonalHandler.UpdatePersonal)
+		r.Post("/activity/create", handler.ActivityHandler.CreateActivity)
+		r.Post("/activity/update", handler.ActivityHandler.UpdateActivity)
+		r.Post("/activity/delete", handler.ActivityHandler.DeleteActivity)
 	})
 
 	fs := http.FileServer(http.Dir("public"))

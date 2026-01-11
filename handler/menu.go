@@ -9,14 +9,16 @@ import (
 )
 
 type MenuHandler struct {
-	PersonalService service.PersonalService
 	Templates *template.Template
+	PersonalService service.PersonalService
+	ActivityService service.ActivityService
 }
 
-func NewMenuHandler(templates *template.Template, personalService service.PersonalService) MenuHandler {
+func NewMenuHandler(templates *template.Template, personalService service.PersonalService, activityService service.ActivityService) MenuHandler {
 	return MenuHandler{
 		Templates: templates,
 		PersonalService: personalService,
+		ActivityService: activityService,
 	}
 }
 
@@ -26,8 +28,14 @@ func (h *MenuHandler) PortfolioView(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error get data personal:", err)
 	}
 
+	activity, err := h.ActivityService.GetDataActivity()
+	if err != nil {
+		fmt.Println("error get data activity:", err)
+	}
+
 	pageData := dto.PortfolioPage{
 		Personal: personal,
+		Activity: activity,
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -42,8 +50,14 @@ func (h *MenuHandler) EditView(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error get data personal:", err)
 	}
 
+	activity, err := h.ActivityService.GetDataActivity()
+	if err != nil {
+		fmt.Println("error get data activity:", err)
+	}
+
 	existingData := dto.PortfolioPage{
 		Personal: personal,
+		Activity: activity,
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
