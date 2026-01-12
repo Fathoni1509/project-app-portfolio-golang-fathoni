@@ -104,7 +104,7 @@ func (contactHandler *ContactHandler) CreateContact(w http.ResponseWriter, r *ht
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#contact", http.StatusSeeOther)
 }
 
 // update data
@@ -180,7 +180,7 @@ func (contactHandler *ContactHandler) UpdateContact(w http.ResponseWriter, r *ht
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#contact", http.StatusSeeOther)
 }
 
 // delete data
@@ -211,5 +211,5 @@ func (contactHandler *ContactHandler) DeleteContact(w http.ResponseWriter, r *ht
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#contact", http.StatusSeeOther)
 }

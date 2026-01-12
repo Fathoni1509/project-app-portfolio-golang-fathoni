@@ -7,18 +7,24 @@
         <a href="#personal">Home</a>
         <div class="w-0 h-0.5 rounded-lg group-hover:w-10 transition-all duration-300 origin-center bg-white"></div>
       </li>
-       <li class="text-white flex flex-col items-center justify-center group gap-1">
+      <li class="text-white flex flex-col items-center justify-center group gap-1">
         <a href="#work">Work Experience</a>
         <div class="w-0 h-0.5 rounded-lg group-hover:w-10 transition-all duration-300 origin-center bg-white"></div>
       </li>
-       <li class="text-white flex flex-col items-center justify-center group gap-1">
+      <li class="text-white flex flex-col items-center justify-center group gap-1">
         <a href="#project">Project</a>
         <div class="w-0 h-0.5 rounded-lg group-hover:w-10 transition-all duration-300 origin-center bg-white"></div>
       </li>
-       <li class="text-white flex flex-col items-center justify-center group gap-1">
+      <li class="text-white flex flex-col items-center justify-center group gap-1">
         <a href="#contact">Contact</a>
         <div class="w-0 h-0.5 rounded-lg group-hover:w-10 transition-all duration-300 origin-center bg-white"></div>
       </li>
+      {{if eq .Path "/edit"}}
+      <a href="/" class="text-white items-center justify-center bg-blue-600 rounded-lg px-4 py-1 hover:bg-blue-800 transition transform duration-500">
+        Back Home
+      </a>
+      
+      {{end}}
     </ul>
   </div>
 </div>

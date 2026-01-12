@@ -33,7 +33,7 @@ func (repo *activityRepository) GetDataActivity() ([]dto.ActivityResponse, error
 	FROM activity a
 	JOIN activity_category ac ON a.category_id = ac.activity_category_id
 	WHERE a.deleted_at IS NULL
-	ORDER BY a.activity_id ASC`
+	ORDER BY a.year DESC`
 
 	rows, err := repo.db.Query(context.Background(), query)
 	if err != nil {

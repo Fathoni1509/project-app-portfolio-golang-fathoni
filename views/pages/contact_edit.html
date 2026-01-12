@@ -1,46 +1,92 @@
 {{ define "contact_edit" }}
 
-    <section class="contact_edit" id="contact_edit">
-        <h2>ini halaman edit data contact</h2>
-        
-        {{ range .Contact }}
-        <form action="/edit/contact/update" method="POST">
-            <input type="hidden" name="contact_id" value="{{ .ContactId }}">
-            <div>
-                <label for="contact_name_{{ .ContactId }}">Nama</label><br>
-                <input type="text" id="contact_name_{{ .ContactId }}" name="contact_name" value="{{ .Name }}">
-            </div>
-            <div>
-                <label for="contact_type_{{ .ContactId }}">Type</label><br>
-                <input type="text" id="contact_type_{{ .ContactId }}" name="contact_type" value="{{ .Type }}">
-            </div>
-            <div>
-                <label for="contact_link_{{ .ContactId }}">Link</label><br>
-                <input type="text" id="contact_link_{{ .ContactId }}" name="contact_link" value="{{ .Link }}">
-            </div>
-            <br>
-            <button type="submit">Simpan</button>
-            <button type="submit" formaction="/edit/contact/delete">Hapus</button>
-        </form>
-        {{ end }}
+    <section class="contact_edit h-full w-full flex flex-col items-center px-8 py-6 gap-6 scroll-mt-20 mb-14" id="contact">
 
-        <p>tambah contact</p>
-        <form action="/edit/contact/create" method="POST">
-            <div>
-                <label for="contact_name">Nama</label><br>
-                <input type="text" id="contact_name" name="contact_name">
-            </div>
-            <div>
-                <label for="contact_type">Type</label><br>
-                <input type="text" id="contact_type" name="contact_type">
-            </div>
-            <div>
-                <label for="contact_link">Link</label><br>
-                <input type="text" id="contact_link" name="contact_link">
-            </div>
-            <br>
-            <button type="submit">Tambah</button>
-        </form>
+        <div class="flex flex-col gap-3 justify-center items-center">
+            <h class="text-white font-medium w-full text-center text-3xl tracking-wider">Edit Contact</h>
+            <div class="h-1 w-40 bg-cyan-400 rounded-lg"></div>
+        </div>
+
+        <div class="w-full mt-4">
+            {{ range .Contact }}
+            <form action="/edit/contact/update" method="POST" class="text-white flex flex-col gap-8 justify-center items-center mb-8 border-b border-cyan-100 pb-14">
+
+                <input type="hidden" name="contact_id" value="{{ .ContactId }}">
+
+                <div class="flex flex-row gap-8 w-full justify-center items-center">
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="contact_type_{{ .ContactId }}" class="font-medium text-lg">Type</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+                        <input type="text" id="contact_type_{{ .ContactId }}" name="contact_type" value="{{ .Type }}" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+    
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="contact_name_{{ .ContactId }}" class="font-medium text-lg">Username</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+                        <input type="text" id="contact_name_{{ .ContactId }}" name="contact_name" value="{{ .Name }}" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+    
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="contact_link_{{ .ContactId }}" class="font-medium text-lg">Link</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+                        <input type="text" id="contact_link_{{ .ContactId }}" name="contact_link" value="{{ .Link }}" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+                </div>
+
+
+                <div class="flex flex-row gap-10 w-[60%] justify-center items-center">
+                    <button type="submit" class="bg-blue-600 text-white w-[40%] rounded-lg border-blue-600 border justify-center items-center flex font-semibold text-lg tracking-widest hover:w-[60%] hover:shadow-lg hover:shadow-cyan-400 hover:bg-transparent hover:border hover:border-cyan-400 hover:text-cyan-400 transition-all transform duration-500 py-2">SAVE</button>
+
+                    <button type="submit" formaction="/edit/contact/delete" class="bg-red-600 text-white w-[40%] rounded-lg border-red-600 border justify-center items-center flex font-semibold text-lg tracking-widest hover:w-[60%] hover:shadow-lg hover:shadow-red-400 hover:bg-transparent hover:border hover:border-red-400 hover:text-red-600 transition-all transform duration-500 py-2">DELETE</button>
+                </div>
+            </form>
+            {{ end }}
+        </div>
+
+        <div class="flex flex-col gap-3 justify-center items-center">
+            <h class="text-white font-medium w-full text-center text-3xl tracking-wider">Add Contact</h>
+            <div class="h-1 w-40 bg-cyan-400 rounded-lg"></div>
+        </div>
+
+        <div class="w-full mt-4">
+            <form action="/edit/contact/create" method="POST" class="text-white flex flex-col gap-8 justify-center items-center mb-8 pb-14">
+
+                <div class="flex flex-row gap-8 w-full justify-center items-center">
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="contact_type" class="font-medium text-lg">Type</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+                        <input type="text" id="contact_type" name="contact_type" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+    
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="contact_name" class="font-medium text-lg">Username</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+                        <input type="text" id="contact_name" name="contact_name" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+    
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="contact_link" class="font-medium text-lg">Link</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+                        <input type="text" id="contact_link" name="contact_link" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+                </div>
+
+                <button type="submit" class="bg-blue-600 text-white w-[20%] rounded-lg border-blue-600 border justify-center items-center flex font-semibold text-lg tracking-widest hover:w-[30%] hover:shadow-lg hover:shadow-cyan-400 hover:bg-transparent hover:border hover:border-cyan-400 hover:text-cyan-400 transition-all transform duration-500 py-2">ADD</button>
+
+            </form>
+        </div>
     </section>
 
 {{ end }}

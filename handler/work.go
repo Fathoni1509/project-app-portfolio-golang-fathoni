@@ -110,7 +110,7 @@ func (workHandler *WorkHandler) CreateWork(w http.ResponseWriter, r *http.Reques
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#work", http.StatusSeeOther)
 }
 
 // update data
@@ -192,7 +192,7 @@ func (workHandler *WorkHandler) UpdateWork(w http.ResponseWriter, r *http.Reques
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#work", http.StatusSeeOther)
 }
 
 // delete data
@@ -223,5 +223,5 @@ func (workHandler *WorkHandler) DeleteWork(w http.ResponseWriter, r *http.Reques
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#work", http.StatusSeeOther)
 }

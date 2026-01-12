@@ -116,7 +116,7 @@ func (activityHandler *ActivityHandler) CreateActivity(w http.ResponseWriter, r 
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#activity", http.StatusSeeOther)
 }
 
 // update data
@@ -204,7 +204,7 @@ func (activityHandler *ActivityHandler) UpdateActivity(w http.ResponseWriter, r 
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#activity", http.StatusSeeOther)
 }
 
 // delete data
@@ -237,5 +237,5 @@ func (activityHandler *ActivityHandler) DeleteActivity(w http.ResponseWriter, r 
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#activity", http.StatusSeeOther)
 }

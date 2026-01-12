@@ -6,4 +6,5 @@ type PortfolioPage struct {
 	Work     []WorkResponse
 	Project  []ProjectResponse
 	Contact  []ContactResponse
+	Path     string
 }

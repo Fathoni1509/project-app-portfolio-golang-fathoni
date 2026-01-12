@@ -154,7 +154,7 @@ func (projectHandler *ProjectHandler) CreateProject(w http.ResponseWriter, r *ht
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#project", http.StatusSeeOther)
 }
 
 // update data
@@ -275,7 +275,7 @@ func (projectHandler *ProjectHandler) UpdateProject(w http.ResponseWriter, r *ht
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#project", http.StatusSeeOther)
 }
 
 // delete data
@@ -306,5 +306,5 @@ func (projectHandler *ProjectHandler) DeleteProject(w http.ResponseWriter, r *ht
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#project", http.StatusSeeOther)
 }

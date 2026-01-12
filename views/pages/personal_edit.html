@@ -1,25 +1,36 @@
 {{ define "personal_edit" }}
 
-    <section class="personal_edit" id="personal_edit">
-        <h2>ini halaman edit data</h2>
-        
+    <section class="personal_edit h-full w-full flex flex-col items-center px-8 py-6 gap-8 scroll-mt-20" id="personal">
 
-        <form action="/edit/personal/update" method="POST">
-            <div>
-                <label for="name">Nama</label><br>
-                <input type="text" id="personal_name" name="personal_name" value="{{ .Personal.Name }}">
-            </div>
-             <div>
-                <label for="age">Age</label><br>
-                <input type="number" id="personal_age" name="personal_age" value="{{ .Personal.Age }}">
-            </div>
-             <div>
-                <label for="description">Description</label><br>
-                <textarea name="personal_description" id="personal_description">{{ .Personal.Description }}</textarea>
-            </div>
-            <br>
-            <button type="submit">Simpan</button>
-        </form>
+        <div class="flex flex-col gap-2 justify-center items-center">
+            <h class="text-white font-medium w-full text-center text-3xl tracking-wider">Edit Home</h>
+            <div class="h-1 w-40 bg-cyan-400 rounded-lg"></div>
+        </div>
+        
+        <div class="w-full">
+            <form action="/edit/personal/update" method="POST" class="text-white flex flex-col gap-8 justify-center items-center">
+                <div class="flex flex-col gap-4 w-full">
+                    <div class="flex flex-col gap-2">
+                        <label for="name" class="font-medium text-lg">Name</label>
+                        <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                    </div>
+                    
+                    <input type="text" id="personal_name" name="personal_name" value="{{ .Personal.Name }}" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                </div>
+        
+                <div class="flex flex-col gap-4 w-full">
+                    <div class="flex flex-col gap-2">
+                        <label for="description" class="font-medium text-lg">Description</label>
+                        <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                    </div>
+                    <textarea name="personal_description" id="personal_description" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium resize-none">{{ .Personal.Description }}</textarea>
+                </div>
+
+                <button type="submit" class="bg-blue-600 text-white w-[20%] rounded-lg border-blue-600 border justify-center items-center flex font-semibold text-lg tracking-widest hover:w-[30%] hover:shadow-lg hover:shadow-cyan-400 hover:bg-transparent hover:border hover:border-cyan-400 hover:text-cyan-400 transition-all transform duration-500 py-2">SAVE</button>
+
+            </form>
+        </div>
+
     </section>
 
 {{ end }}

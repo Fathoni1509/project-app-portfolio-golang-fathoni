@@ -1,31 +1,68 @@
 {{ define "work_edit" }}
 
-    <section class="work_edit" id="work_edit">
-        <h2>ini halaman edit data work</h2>
-        
-        {{ range .Work }}
-        <form action="/edit/work/update" method="POST">
-            <input type="hidden" name="work_id" value="{{ .WorkId }}">
-            <div>
-                <label for="work_name_{{ .WorkId }}">Nama</label><br>
-                <input type="text" id="work_name_{{ .WorkId }}" name="work_name" value="{{ .Name }}">
-            </div>
-            <div>
-                <label for="work_description_{{ .WorkId }}">Description</label><br>
-                <textarea id="work_description_{{ .WorkId }}" name="work_description">{{ .Description }}</textarea>
-            </div>
-            <div>
-                <label for="work_year_{{ .WorkId }}">Year</label><br>
-                <input type="number" id="work_year_{{ .WorkId }}" name="work_year" value="{{ .Year }}">
-            </div>
-            <br>
-            <button type="submit">Simpan</button>
-            <button type="submit" formaction="/edit/work/delete">Hapus</button>
-        </form>
-        {{ end }}
+    <section class="work_edit h-full w-full flex flex-col items-center px-8 py-6 gap-6 scroll-mt-20" id="work">
 
-        <p>tambah work</p>
-        <form action="/edit/work/create" method="POST">
+        <div class="flex flex-col gap-3 justify-center items-center">
+            <h class="text-white font-medium w-full text-center text-3xl tracking-wider">Edit Work Experience</h>
+            <div class="h-1 w-40 bg-cyan-400 rounded-lg"></div>
+        </div>
+
+        <div class="w-full">
+            {{ range .Work }}
+            <form action="/edit/work/update" method="POST" class="text-white flex flex-col gap-8 justify-center items-center mb-8 border-b border-cyan-100 pb-14">
+
+                <input type="hidden" name="work_id" value="{{ .WorkId }}">
+
+                <div class="grid grid-cols-[1fr_300px] gap-12 w-full">
+
+                    <div class="flex flex-col gap-4 w-full">
+
+                        <div class="flex flex-col gap-2">
+                            <label for="work_name_{{ .WorkId }}" class="font-medium text-lg">Name</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+
+                        <input type="text" id="work_name_{{ .WorkId }}" name="work_name" value="{{ .Name }}" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="work_year_{{ .WorkId }}" class="font-medium text-lg">Year</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+
+                        <input type="number" id="work_year_{{ .WorkId }}" name="work_year" value="{{ .Year }}" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+
+                </div>
+
+
+                <div class="flex flex-col gap-4 w-full">
+                    <div class="flex flex-col gap-2">
+                        <label for="work_description_{{ .WorkId }}" class="font-medium text-lg">Description</label>
+
+                        <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                    </div>
+                    <textarea id="work_description_{{ .WorkId }}" name="work_description" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium resize-none">{{ .Description }}</textarea>
+                </div>
+
+                <div class="flex flex-row gap-10 w-[60%] justify-center items-center">
+                    <button type="submit" class="bg-blue-600 text-white w-[40%] rounded-lg border-blue-600 border justify-center items-center flex font-semibold text-lg tracking-widest hover:w-[60%] hover:shadow-lg hover:shadow-cyan-400 hover:bg-transparent hover:border hover:border-cyan-400 hover:text-cyan-400 transition-all transform duration-500 py-2">SAVE</button>
+
+                    <button type="submit" formaction="/edit/work/delete" class="bg-red-600 text-white w-[40%] rounded-lg border-red-600 border justify-center items-center flex font-semibold text-lg tracking-widest hover:w-[60%] hover:shadow-lg hover:shadow-red-400 hover:bg-transparent hover:border hover:border-red-400 hover:text-red-600 transition-all transform duration-500 py-2">DELETE</button>
+                </div>
+
+            </form>
+            {{ end }}
+        </div>
+        
+
+        <div class="flex flex-col gap-3 justify-center items-center">
+            <h class="text-white font-medium w-full text-center text-3xl tracking-wider">Add Work Experience</h>
+            <div class="h-1 w-40 bg-cyan-400 rounded-lg"></div>
+        </div>
+
+        <!-- <form action="/edit/work/create" method="POST">
             <div>
                 <label for="work_name">Nama</label><br>
                 <input type="text" id="work_name" name="work_name">
@@ -40,7 +77,48 @@
             </div>
             <br>
             <button type="submit">Tambah</button>
-        </form>
+        </form> -->
+
+        <div class="w-full">
+            <form action="/edit/work/create" method="POST" class="text-white flex flex-col gap-8 justify-center items-center mb-8 border-b border-cyan-100 pb-14">
+
+                <div class="grid grid-cols-[1fr_300px] gap-12 w-full">
+
+                    <div class="flex flex-col gap-4 w-full">
+
+                        <div class="flex flex-col gap-2">
+                            <label for="work_name" class="font-medium text-lg">Name</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+
+                        <input type="text" id="work_name" name="work_name" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="work_year" class="font-medium text-lg">Year</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+
+                        <input type="number" id="work_year" name="work_year" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+
+                </div>
+
+
+                <div class="flex flex-col gap-4 w-full">
+                    <div class="flex flex-col gap-2">
+                        <label for="work_description" class="font-medium text-lg">Description</label>
+
+                        <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                    </div>
+                    <textarea id="work_description" name="work_description" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium resize-none"></textarea>
+                </div>
+
+                <button type="submit" class="bg-blue-600 text-white w-[20%] rounded-lg border-blue-600 border justify-center items-center flex font-semibold text-lg tracking-widest hover:w-[30%] hover:shadow-lg hover:shadow-cyan-400 hover:bg-transparent hover:border hover:border-cyan-400 hover:text-cyan-400 transition-all transform duration-500 py-2">ADD</button>
+
+            </form>
+        </div>
     </section>
 
 {{ end }}

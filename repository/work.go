@@ -31,7 +31,7 @@ func (repo *workRepository) GetDataWork() ([]dto.WorkResponse, error) {
 		year
 	FROM work
 	WHERE deleted_at IS NULL
-	ORDER BY work_id ASC`
+	ORDER BY year DESC`
 
 	rows, err := repo.db.Query(context.Background(), query)
 	if err != nil {

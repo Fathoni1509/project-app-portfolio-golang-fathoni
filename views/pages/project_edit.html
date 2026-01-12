@@ -1,63 +1,138 @@
 {{ define "project_edit" }}
 
-    <section class="project_edit" id="project_edit">
-        <h2>ini halaman edit data project</h2>
-        
-        {{ range .Project }}
-        <form action="/edit/project/update" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="project_id" value="{{ .ProjectId }}">
-            <div>
-                <label for="project_name_{{ .ProjectId }}">Nama</label><br>
-                <input type="text" id="project_name_{{ .ProjectId }}" name="project_name" value="{{ .Name }}">
-            </div>
-            <div>
-                <label for="project_description_{{ .ProjectId }}">Description</label><br>
-                <textarea id="project_description_{{ .ProjectId }}" name="project_description">{{ .Description }}</textarea>
-            </div>
-            <div>
-                <label for="project_year_{{ .ProjectId }}">Year</label><br>
-                <input type="number" id="project_year_{{ .ProjectId }}" name="project_year" value="{{ .Year }}">
-            </div>
-            <div>
-                <label for="project_link_{{ .ProjectId }}">Link</label><br>
-                <input type="text" id="project_link_{{ .ProjectId }}" name="project_link" value="{{ .Link }}">
-            </div>
-            <div>
-                <label for="project_image_{{ .ProjectId }}">Image</label><br>
-                <img src="{{ .ImageData }}" alt="img-{{ .ImageData }}" width="100">
-                <input type="file" id="project_image_{{ .ProjectId }}" name="project_image_data">
-            </div>
-            <br>
-            <button type="submit">Simpan</button>
-            <button type="submit" formaction="/edit/project/delete">Hapus</button>
-        </form>
-        {{ end }}
+    <section class="project_edit h-full w-full flex flex-col items-center px-8 py-6 gap-6 scroll-mt-20" id="project">
 
-        <p>tambah project</p>
-        <form action="/edit/project/create" method="POST" enctype="multipart/form-data">
-            <div>
-                <label for="project_name">Nama</label><br>
-                <input type="text" id="project_name" name="project_name">
-            </div>
-            <div>
-                <label for="project_description">Description</label><br>
-                <textarea id="project_description" name="project_description"></textarea>
-            </div>
-            <div>
-                <label for="project_year">Year</label><br>
-                <input type="number" id="project_year" name="project_year">
-            </div>
-            <div>
-                <label for="project_link">Link</label><br>
-                <input type="text" id="project_link" name="project_link">
-            </div>
-            <div>
-                <label for="project_image">Image</label><br>
-                <input type="file" id="project_image" name="project_image_data">
-            </div>
-            <br>
-            <button type="submit">Tambah</button>
-        </form>
+        <div class="flex flex-col gap-3 justify-center items-center">
+            <h class="text-white font-medium w-full text-center text-3xl tracking-wider">Edit Project</h>
+            <div class="h-1 w-40 bg-cyan-400 rounded-lg"></div>
+        </div>
+
+        <div class="w-full mt-6">
+            {{ range .Project }}
+            <form action="/edit/project/update" method="POST" enctype="multipart/form-data" class="h-130 text-white mb-12 border-b border-cyan-100 pb-18">
+
+                <input type="hidden" name="project_id" value="{{ .ProjectId }}">
+
+                <div class="grid grid-cols-[450px_1fr] gap-8 w-full">
+                    <div class="w-full grid grid-rows-[40px_1fr_60px] justify-items-center gap-4">
+                        <div class="flex flex-col gap-2 justify-start w-full">
+                            <label for="project_image_{{ .ProjectId }}" class="font-medium text-lg">Image</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+
+                        <div class="flex flex-col gap-4 w-full">
+                            <img src="{{ .ImageData }}" alt="img-{{ .ImageData }}" width="100" class="w-full rounded-lg">
+                            <input type="file" id="project_image_{{ .ProjectId }}" name="project_image_data" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 font-medium text-sm">
+                        </div>
+                        
+                        <div class="flex flex-row gap-4 justify-center items-center w-full">
+                            <button type="submit" class="bg-blue-600 text-white w-[40%] rounded-lg border-blue-600 border justify-center items-center flex font-semibold text-lg tracking-widest hover:w-[60%] hover:shadow-lg hover:shadow-cyan-400 hover:bg-transparent hover:border hover:border-cyan-400 hover:text-cyan-400 transition-all transform duration-500 py-1">SAVE</button>
+
+                            <button type="submit" formaction="/edit/project/delete" class="bg-red-600 text-white w-[40%] rounded-lg border-red-600 border justify-center items-center flex font-semibold text-lg tracking-widest hover:w-[60%] hover:shadow-lg hover:shadow-red-400 hover:bg-transparent hover:border hover:border-red-400 hover:text-red-600 transition-all transform duration-500 py-1">DELETE</button>
+                        </div>
+
+                    </div>
+
+                    <!-- buat data datanya -->
+                    <div class="w-full flex flex-col gap-3">
+
+                        <div class="grid grid-cols-[1fr_200px] gap-8 w-full">
+                            <div class="flex flex-col gap-4 w-full">
+                                <div class="flex flex-col gap-2">
+                                    <label for="project_name_{{ .ProjectId }}" class="font-medium text-lg">Name</label>
+                                    <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                                </div>
+                                <input type="text" id="project_name_{{ .ProjectId }}" name="project_name" value="{{ .Name }}" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                            </div>
+                            <div class="flex flex-col gap-4 w-full">
+                                <div class="flex flex-col gap-2">
+                                    <label for="project_year_{{ .ProjectId }}" class="font-medium text-lg">Year</label>
+                                    <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                                </div>
+                                <input type="number" id="project_year_{{ .ProjectId }}" name="project_year" value="{{ .Year }}" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-4 w-full">
+                            <div class="flex flex-col gap-2">
+                                <label for="project_link_{{ .ProjectId }}" class="font-medium text-lg">Link</label>
+                                <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                            </div>
+                            <input type="text" id="project_link_{{ .ProjectId }}" name="project_link" value="{{ .Link }}" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                        </div>
+
+                        <div class="flex flex-col gap-4 w-full">
+                            <div class="flex flex-col gap-2">
+                                <label for="project_description_{{ .ProjectId }}" class="font-medium text-lg">Description</label>
+                                <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                            </div>
+                            <textarea id="project_description_{{ .ProjectId }}" name="project_description" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium resize-none">{{ .Description }}</textarea>
+                        </div>
+
+                    </div>
+                    
+                </div>
+                
+            </form>
+            {{ end }}
+        </div>
+
+        <div class="flex flex-col gap-3 justify-center items-center">
+            <h class="text-white font-medium w-full text-center text-3xl tracking-wider">Add Project</h>
+            <div class="h-1 w-40 bg-cyan-400 rounded-lg"></div>
+        </div>
+
+        <div class="w-full mt-6">
+            <form action="/edit/project/create" method="POST" enctype="multipart/form-data" class="text-white flex flex-col gap-8 justify-center items-center mb-8 pb-10 border-b border-cyan-100">
+                <div class="w-full grid grid-cols-[1fr_350px] gap-8">
+
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="project_name" class="font-medium text-lg">Name</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+                        <input type="text" id="project_name" name="project_name" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+    
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="project_year" class="font-medium text-lg">Year</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+                        <input type="number" id="project_year" name="project_year" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="project_link" class="font-medium text-lg">Link</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+                        <input type="text" id="project_link" name="project_link" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+
+                    <div class="flex flex-col gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <label for="project_image" class="font-medium text-lg">Image</label>
+                            <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                        </div>
+                        <input type="file" id="project_image" name="project_image_data" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium">
+                    </div>
+
+                </div>
+
+                <div class="flex flex-col gap-4 w-full">
+                    <div class="flex flex-col gap-2">
+                        <label for="project_description" class="font-medium text-lg">Description</label>
+                        <div class="h-0.5 w-20 bg-cyan-400 rounded-lg"></div>
+                    </div>
+                    <textarea id="project_description" name="project_description" class="w-full rounded-lg border border-cyan-400 bg-transparent px-4 py-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition duration-300 text-xl font-medium resize-none"></textarea>
+                </div>
+                
+                <button type="submit" class="bg-blue-600 text-white w-[20%] rounded-lg border-blue-600 border justify-center items-center flex font-semibold text-lg tracking-widest hover:w-[30%] hover:shadow-lg hover:shadow-cyan-400 hover:bg-transparent hover:border hover:border-cyan-400 hover:text-cyan-400 transition-all transform duration-500 py-2">ADD</button>
+
+            </form>
+        </div>
+
     </section>
 
 {{ end }}

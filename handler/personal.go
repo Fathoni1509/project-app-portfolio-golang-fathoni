@@ -109,5 +109,5 @@ func (personalHandler *PersonalHandler) UpdatePersonal(w http.ResponseWriter, r 
 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	// }
 
-	http.Redirect(w, r, "/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/edit#personal", http.StatusSeeOther)
 }

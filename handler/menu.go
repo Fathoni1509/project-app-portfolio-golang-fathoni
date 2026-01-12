@@ -107,6 +107,7 @@ func (h *MenuHandler) EditView(w http.ResponseWriter, r *http.Request) {
 		Work:     work,
 		Project:  project,
 		Contact:  contact,
+		Path:     r.URL.Path,
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
