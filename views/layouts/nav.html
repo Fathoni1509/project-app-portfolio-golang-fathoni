@@ -1,12 +1,25 @@
 {{ define "nav" }}
-<nav>
-  <div class="container">
-    <h1>Manajemen Tugas</h1>
-    <ul class="nav-menu">
-      <li><a href="/user/assignments">Tugas</a></li>
-      <li><a href="/user/grade">Penilaian</a></li>
-      <li><a href="/user/logout">Logout</a></li>
+<div class="bg-linear-to-br from-teal-400 to-cyan-500 w-full sticky top-0 z-10">
+  <div class="flex flex-row px-8 py-5 items-center justify-between">
+    <img src="../../public/img/logo-font-white.png" alt="logo-font-white" width="120" height="80">
+    <ul class="flex flex-row gap-10 font-medium text-lg">
+      <li class="text-white flex flex-col items-center justify-center group gap-1">
+        <a href="#personal">Home</a>
+        <div class="w-0 h-0.5 rounded-lg group-hover:w-10 transition-all duration-300 origin-center bg-white"></div>
+      </li>
+       <li class="text-white flex flex-col items-center justify-center group gap-1">
+        <a href="#work">Work Experience</a>
+        <div class="w-0 h-0.5 rounded-lg group-hover:w-10 transition-all duration-300 origin-center bg-white"></div>
+      </li>
+       <li class="text-white flex flex-col items-center justify-center group gap-1">
+        <a href="#project">Project</a>
+        <div class="w-0 h-0.5 rounded-lg group-hover:w-10 transition-all duration-300 origin-center bg-white"></div>
+      </li>
+       <li class="text-white flex flex-col items-center justify-center group gap-1">
+        <a href="#contact">Contact</a>
+        <div class="w-0 h-0.5 rounded-lg group-hover:w-10 transition-all duration-300 origin-center bg-white"></div>
+      </li>
     </ul>
   </div>
-</nav>
+</div>
 {{ end }}

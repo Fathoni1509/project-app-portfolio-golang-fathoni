@@ -1,25 +1,33 @@
 {{ define "project" }}
 
-    <section class="project" id="project">
-        <h2>selamat datang project</h2>
-        {{range .Project}}
-        <p>
-             {{ .ProjectId }}
-        </p>
-        <h2>
-            {{ .Name }}
-        </h2>
-        <p>
-            {{ .Description }}
-        </p>
-        <p>
-            {{ .Year }}
-        </p>
-        <p>
-            {{ .Link }}
-        </p>
-        <img src="{{ .ImageData }}" alt="img-{{ .ImageData }}" width="200">
-        {{end}}
+    <section class="project h-full w-full flex flex-col items-center px-8 py-6 gap-8 scroll-mt-20 mt-14" id="project">
+
+        <div class="flex flex-col gap-2 justify-center items-center">
+            <h class="text-white font-medium w-full text-center text-3xl tracking-wider">Project</h>
+            <div class="h-1 w-40 bg-cyan-400 rounded-lg"></div>
+        </div>
+
+        <div class="flex justify-center">
+            <div class="h-full max-w-5xl w-full flex flex-wrap gap-12 justify-center px-12">
+                {{range .Project}}
+                <div class="bg-linear-to-tr from-cyan-400/30 to-transparent border-2 border-cyan-400 h-95 p-4 rounded-lg grid grid-rows-[150px_1fr_40px] gap-3 w-75 justify-items-center hover:shadow-lg hover:shadow-cyan-400 transition transform duration-500 hover:-translate-y-4">
+                    <div class="overflow-hidden rounded-lg w-full h-full bg-green-400">
+                        <img src="{{ .ImageData }}" alt="img-{{ .ImageData }}" width="200" class="w-full">
+                    </div>
+                    <div class="flex flex-col gap-1 w-full text-white">
+                        <h class="font-medium text-lg capitalize tracking-wider">
+                            {{ .Name }} ({{ .Year }})
+                        </h>
+                        <p class="tracking-wide">
+                            {{ .Description }}
+                        </p>
+                    </div>
+                    <a href="{{ .Link }}" class="bg-blue-600 text-white w-full rounded-lg justify-center items-center flex font-semibold text-lg tracking-widest hover:w-[80%] transition-all transform duration-500">See Project</a>
+                </div>
+                {{end}}
+            </div>
+        </div>
+
     </section>
 
 {{ end }}

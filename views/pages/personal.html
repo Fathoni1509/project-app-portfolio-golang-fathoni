@@ -1,18 +1,23 @@
 {{ define "personal" }}
 
-    <section class="personal" id="personal">
-        <h2>selamat datang</h2>
-        {{/* {{range .}} */}}
-        <h2>
-            {{ .Personal.Name }}
-        </h2>
-        <p>
-            {{ .Personal.Description }}
-        </p>
-        <p>
-            {{ .Personal.Age }}
-        </p>
-        {{/* {{end}} */}}
+    <section class="personal grid grid-cols-[600px_1fr] gap-4 justify-items-center content-center h-screen -mt-18 px-10 py-2" id="personal">
+        <div class="flex flex-col gap-8 w-full h-full justify-center text-white">
+            <div class="flex flex-col gap-2">
+                <h class="font-medium text-lg">Hello, Welcome to My Portfolio</h>
+                <div class="h-1 w-32 bg-cyan-400 rounded-lg"></div>
+            </div>
+            {{/* {{range .}} */}}
+            <h class="font-bold text-5xl tracking-wider capitalize">
+                I'am {{ .Personal.Name }}
+            </h>
+            <p class="text-xl tracking-wide">
+                {{ .Personal.Description }}
+            </p>
+            {{/* {{end}} */}}
+        </div>
+        <div class="w-full h-full flex items-center justify-center">
+            <img src="../../public/img/cartoon-portfolio.png" alt="cartoon" width="450">
+        </div>
     </section>
 
 {{ end }}

@@ -1,21 +1,57 @@
 {{ define "activity" }}
 
-    <section class="activity" id="activity">
-        <h2>selamat datang activity</h2>
-        {{range .Activity}}
-        <p>
-             {{ .ActivityId }}
-        </p>
-        <h2>
-            {{ .Name }}
-        </h2>
-        <p>
-            {{ .Year }}
-        </p>
-        <p>
-            {{ .Category }}
-        </p>
-        {{end}}
+    <section class="activity h-full w-full flex flex-col items-center px-8 py-6 gap-8 mb-10" id="activity">
+
+        <div class="flex flex-col gap-2 justify-center items-center">
+            <h class="text-white font-medium w-full text-center text-3xl tracking-wider">Education and Organization</h>
+            <div class="h-1 w-40 bg-cyan-400 rounded-lg"></div>
+        </div>
+
+        <div class="w-[70%] flex justify-center gap-16">
+
+            <div class="p-4 w-full h-full flex flex-col">
+                <div class="flex flex-col gap-2 justify-center items-center">
+                    <h1 class="text-center text-white font-medium text-xl tracking-wide">Education</h1>
+                    <div class="h-0.5 w-14 bg-cyan-400 rounded-lg"></div>
+                </div>
+                <ul>
+                    {{range .Activity}}
+                    {{ if eq .Category "education" }}
+                    <li class="text-white list-disc my-6">
+                            <h2 class="tracking-wide">
+                                {{ .Name }}
+                            </h2>
+                            <p class="tracking-wide">
+                               Year: {{ .Year }}
+                            </p>
+                    </li>
+                    {{end}}
+                    {{end}}
+                </ul>
+            </div>
+
+            <div class="p-4 w-full h-full flex flex-col">
+                <div class="flex flex-col gap-2 justify-center items-center">
+                    <h1 class="text-center text-white font-medium text-xl tracking-wide">Organization</h1>
+                    <div class="h-0.5 w-14 bg-cyan-400 rounded-lg"></div>
+                </div>
+                <ul>
+                    {{range .Activity}}
+                    {{ if eq .Category "organization" }}
+                    <li class="text-white list-disc my-6">
+                            <h2 class="tracking-wide">
+                                {{ .Name }}
+                            </h2>
+                            <p class="tracking-wide">
+                               Year: {{ .Year }}
+                            </p>
+                    </li>
+                    {{end}}
+                    {{end}}
+                </ul>
+            </div>
+            
+        </div>
     </section>
 
 {{ end }}
