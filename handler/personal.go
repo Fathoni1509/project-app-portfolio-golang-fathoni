@@ -22,28 +22,8 @@ func NewPersonalHandler(templates *template.Template,personalService service.Per
 	}
 }
 
-// get data personal
-func (personalHandler *PersonalHandler) GetDataPersonal(w http.ResponseWriter, r *http.Request) {
-	personal, err := personalHandler.PersonalService.GetDataPersonal()
-	if err != nil {
-		utils.ResponseBadRequest(w, http.StatusNotFound, "data not found:"+err.Error(), nil)
-		return
-	}
-
-	// utils.ResponseSuccess(w, http.StatusOK, "success get data personal", personal)
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	if err := personalHandler.Templates.ExecuteTemplate(w, "personal", personal); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
-
 // update data
 func (personalHandler *PersonalHandler) UpdatePersonal(w http.ResponseWriter, r *http.Request) {
-	// var req dto.PersonalUpdateRequest
-	// if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-	// 	utils.ResponseBadRequest(w, http.StatusBadRequest, "error data:"+err.Error(), nil)
-	// 	return
-	// }
 
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, "failed process form", http.StatusBadRequest)
@@ -60,36 +40,6 @@ func (personalHandler *PersonalHandler) UpdatePersonal(w http.ResponseWriter, r 
         return
     }
 
-	// if err := r.FormValue("personal"); err != nil {
-	// 	utils.ResponseBadRequest(w, http.StatusBadRequest, "error data:"+err.Error(), nil)
-	// 	return
-	// }
-
-	// existing, err := personalHandler.PersonalService.GetDataPersonal()
-	// if err != nil {
-	// 	utils.ResponseBadRequest(w, http.StatusNotFound, "data not found:"+err.Error(), nil)
-	// 	return
-	// }
-
-	// if req.Name != nil {
-	// 	existing.Name = *req.Name
-	// }
-
-	// if req.Age != nil {
-	// 	existing.Age = *req.Age
-	// }
-
-	// if req.Description != nil {
-	// 	existing.Description = *req.Description
-	// }
-
-	// validation
-	// messages, err := utils.ValidateErrors(req)
-	// if err != nil {
-	// 	utils.ResponseBadRequest(w, http.StatusBadRequest, err.Error(), messages)
-	// 	return
-	// }
-
 	// parsing to model personal
 	personal := dto.PersonalUpdateRequest{
 		Name: &nameStr,
@@ -102,12 +52,6 @@ func (personalHandler *PersonalHandler) UpdatePersonal(w http.ResponseWriter, r 
 		utils.ResponseBadRequest(w, http.StatusInternalServerError, "error update:"+err.Error(), nil)
 		return
 	}
-
-	// utils.ResponseSuccess(w, http.StatusOK, "updated success", nil)
-	// w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	// if err := personalHandler.Templates.ExecuteTemplate(w, "personal_edit", personal); err != nil {
-	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
-	// }
 
 	http.Redirect(w, r, "/edit#personal", http.StatusSeeOther)
 }

@@ -22,30 +22,9 @@ func NewActivityHandler(templates *template.Template,activityService service.Act
 	}
 }
 
-// abaikan get data, get data lakukan di menu
-// get data activity
-func (activityHandler *ActivityHandler) GetDataActivity(w http.ResponseWriter, r *http.Request) {
-	activity, err := activityHandler.ActivityService.GetDataActivity()
-	if err != nil {
-		utils.ResponseBadRequest(w, http.StatusNotFound, "data not found:"+err.Error(), nil)
-		return
-	}
-
-	// utils.ResponseSuccess(w, http.StatusOK, "success get data activity", activity)
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	if err := activityHandler.Templates.ExecuteTemplate(w, "activity", activity); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
-
 // create data
 func (activityHandler *ActivityHandler) CreateActivity(w http.ResponseWriter, r *http.Request) {
-	// var req dto.ActivityUpdateRequest
-	// if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-	// 	utils.ResponseBadRequest(w, http.StatusBadRequest, "error data:"+err.Error(), nil)
-	// 	return
-	// }
-
+	
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, "failed process form", http.StatusBadRequest)
 		return
@@ -67,36 +46,6 @@ func (activityHandler *ActivityHandler) CreateActivity(w http.ResponseWriter, r 
         return
     }
 
-	// if err := r.FormValue("activity"); err != nil {
-	// 	utils.ResponseBadRequest(w, http.StatusBadRequest, "error data:"+err.Error(), nil)
-	// 	return
-	// }
-
-	// existing, err := activityHandler.ActivityService.GetDataActivity()
-	// if err != nil {
-	// 	utils.ResponseBadRequest(w, http.StatusNotFound, "data not found:"+err.Error(), nil)
-	// 	return
-	// }
-
-	// if req.Name != nil {
-	// 	existing.Name = *req.Name
-	// }
-
-	// if req.Age != nil {
-	// 	existing.Age = *req.Age
-	// }
-
-	// if req.Description != nil {
-	// 	existing.Description = *req.Description
-	// }
-
-	// validation
-	// messages, err := utils.ValidateErrors(req)
-	// if err != nil {
-	// 	utils.ResponseBadRequest(w, http.StatusBadRequest, err.Error(), messages)
-	// 	return
-	// }
-
 	// parsing to model activity
 	activity := dto.ActivityCreateRequest{
 		Name: nameStr,
@@ -110,22 +59,11 @@ func (activityHandler *ActivityHandler) CreateActivity(w http.ResponseWriter, r 
 		return
 	}
 
-	// utils.ResponseSuccess(w, http.StatusOK, "updated success", nil)
-	// w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	// if err := activityHandler.Templates.ExecuteTemplate(w, "activity_edit", activity); err != nil {
-	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
-	// }
-
 	http.Redirect(w, r, "/edit#activity", http.StatusSeeOther)
 }
 
 // update data
 func (activityHandler *ActivityHandler) UpdateActivity(w http.ResponseWriter, r *http.Request) {
-	// var req dto.ActivityUpdateRequest
-	// if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-	// 	utils.ResponseBadRequest(w, http.StatusBadRequest, "error data:"+err.Error(), nil)
-	// 	return
-	// }
 
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, "failed process form", http.StatusBadRequest)
@@ -155,36 +93,6 @@ func (activityHandler *ActivityHandler) UpdateActivity(w http.ResponseWriter, r 
         return
     }
 
-	// if err := r.FormValue("activity"); err != nil {
-	// 	utils.ResponseBadRequest(w, http.StatusBadRequest, "error data:"+err.Error(), nil)
-	// 	return
-	// }
-
-	// existing, err := activityHandler.ActivityService.GetDataActivity()
-	// if err != nil {
-	// 	utils.ResponseBadRequest(w, http.StatusNotFound, "data not found:"+err.Error(), nil)
-	// 	return
-	// }
-
-	// if req.Name != nil {
-	// 	existing.Name = *req.Name
-	// }
-
-	// if req.Age != nil {
-	// 	existing.Age = *req.Age
-	// }
-
-	// if req.Description != nil {
-	// 	existing.Description = *req.Description
-	// }
-
-	// validation
-	// messages, err := utils.ValidateErrors(req)
-	// if err != nil {
-	// 	utils.ResponseBadRequest(w, http.StatusBadRequest, err.Error(), messages)
-	// 	return
-	// }
-
 	// parsing to model activity
 	activity := dto.ActivityUpdateRequest{
 		Name: &nameStr,
@@ -197,12 +105,6 @@ func (activityHandler *ActivityHandler) UpdateActivity(w http.ResponseWriter, r 
 		utils.ResponseBadRequest(w, http.StatusInternalServerError, "error update:"+err.Error(), nil)
 		return
 	}
-
-	// utils.ResponseSuccess(w, http.StatusOK, "updated success", nil)
-	// w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	// if err := activityHandler.Templates.ExecuteTemplate(w, "activity_edit", activity); err != nil {
-	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
-	// }
 
 	http.Redirect(w, r, "/edit#activity", http.StatusSeeOther)
 }
@@ -223,19 +125,11 @@ func (activityHandler *ActivityHandler) DeleteActivity(w http.ResponseWriter, r 
         return
     }
 
-
-
 	err = activityHandler.ActivityService.DeleteActivity(idInt)
 	if err != nil {
 		utils.ResponseBadRequest(w, http.StatusInternalServerError, "error delete:"+err.Error(), nil)
 		return
 	}
-
-	// utils.ResponseSuccess(w, http.StatusOK, "updated success", nil)
-	// w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	// if err := activityHandler.Templates.ExecuteTemplate(w, "activity_edit", activity); err != nil {
-	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
-	// }
 
 	http.Redirect(w, r, "/edit#activity", http.StatusSeeOther)
 }

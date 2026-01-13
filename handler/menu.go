@@ -18,15 +18,6 @@ type MenuHandler struct {
 	Services        *service.Service
 }
 
-// func NewMenuHandler(templates *template.Template, personalService service.PersonalService, activityService service.ActivityService, workService service.WorkService) MenuHandler {
-// 	return MenuHandler{
-// 		Templates: templates,
-// 		PersonalService: personalService,
-// 		ActivityService: activityService,
-// 		WorkService: workService,
-// 	}
-// }
-
 func NewMenuHandler(templates *template.Template, service *service.Service) MenuHandler {
 	return MenuHandler{
 		Templates: templates,
@@ -40,7 +31,6 @@ func (h *MenuHandler) PortfolioView(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("error get data personal:", err)
 	}
 
-	// activity, err := h.ActivityService.GetDataActivity()
 	activity, err := h.Services.ActivityService.GetDataActivity()
 	if err != nil {
 		fmt.Println("error get data activity:", err)
@@ -112,14 +102,6 @@ func (h *MenuHandler) EditView(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	if err := h.Templates.ExecuteTemplate(w, "main_edit", existingData); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
-
-// ga guna
-func (h *MenuHandler) PersonalView(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	if err := h.Templates.ExecuteTemplate(w, "personal", nil); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }

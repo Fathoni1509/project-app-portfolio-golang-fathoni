@@ -15,14 +15,11 @@ func NewRouter(handler handler.Handler) *chi.Mux {
 
 	// main portfolio page
 	r.Route("/", func(r chi.Router) {
-		// r.Get("/", handler.HandlerMenu.PersonalView)
 		r.Get("/", handler.HandlerMenu.PortfolioView)
-		// r.Get("/", handler.PersonalHandler.GetDataPersonal)
 	})
 
 	// edit page
 	r.Route("/edit", func(r chi.Router) {
-		// r.Get("/", handler.HandlerMenu.PersonalView)
 		r.Get("/", handler.HandlerMenu.EditView)
 
 		r.Post("/personal/update", handler.PersonalHandler.UpdatePersonal)

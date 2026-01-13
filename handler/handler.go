@@ -16,7 +16,6 @@ type Handler struct {
 
 func NewHandler(service *service.Service, templates *template.Template) Handler {
 	return Handler{
-		// HandlerMenu:     NewMenuHandler(templates, service.PersonalService, service.ActivityService, service.WorkService),
 		HandlerMenu:     NewMenuHandler(templates, service),
 		PersonalHandler: NewPersonalHandler(templates, service.PersonalService),
 		ActivityHandler: NewActivityHandler(templates, service.ActivityService),
