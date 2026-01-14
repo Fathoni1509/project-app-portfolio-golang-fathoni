@@ -44,12 +44,11 @@ func (repo *personalRepository) GetDataPersonal() (dto.PersonalResponse, error) 
 // update data personal
 func (repo *personalRepository) UpdatePersonal(personal *dto.PersonalUpdateRequest) error {
 	query := `UPDATE personal
-		SET name=$1, age=$2, description=$3, updated_at=NOW()
+		SET name=$1, description=$2, updated_at=NOW()
 		WHERE deleted_at IS NULL AND personal_id=1`
 
 	commandTag, err := repo.db.Exec(context.Background(), query,
 		personal.Name,
-		personal.Age,
 		personal.Description,
 	)
 

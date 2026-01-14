@@ -1,13 +1,11 @@
 package handler
 
 import (
-	// "encoding/json"
 	"html/template"
 	"net/http"
 	"project-app-portfolio-golang-fathoni/dto"
 	"project-app-portfolio-golang-fathoni/service"
 	"project-app-portfolio-golang-fathoni/utils"
-	"strconv"
 )
 
 type PersonalHandler struct {
@@ -31,23 +29,15 @@ func (personalHandler *PersonalHandler) UpdatePersonal(w http.ResponseWriter, r 
 	}
 
 	nameStr := r.FormValue("personal_name") 
-    ageStr  := r.FormValue("personal_age")
     descStr := r.FormValue("personal_description")
-
-	ageInt, err := strconv.Atoi(ageStr)
-    if err != nil {
-        http.Error(w, "age must be integer", http.StatusBadRequest)
-        return
-    }
 
 	// parsing to model personal
 	personal := dto.PersonalUpdateRequest{
 		Name: &nameStr,
-		Age: &ageInt,
 		Description: &descStr,
 	}
 
-	err = personalHandler.PersonalService.UpdatePersonal(&personal)
+	err := personalHandler.PersonalService.UpdatePersonal(&personal)
 	if err != nil {
 		utils.ResponseBadRequest(w, http.StatusInternalServerError, "error update:"+err.Error(), nil)
 		return
