@@ -1,2 +1,4 @@
-# project-app-portfolio-golang-fathoni
-mini project membuat sebuah app portfolio restapi golang
+# Web Portfolio Golang
+### Mini Project App Portfolio Golang oleh Fathoni
+
+**Video Demo:** [`  Video-Demo-Web-Portfolio   `](https://youtu.be/XoqZG-FZ8_E)
